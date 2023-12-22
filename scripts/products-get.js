@@ -23,25 +23,30 @@ import {
   equalTo,
   onValue,
 } from "../firebase/firebaseConfig.js";
+let uniqueId = null;
 
 (function () {
   let user = JSON.parse(localStorage.getItem("user"));
-  // console.log(user);
   if (user === null) {
     window.location.pathname = "../Login-SignUp/Firebase - Login/login.html";
   }
-  if (user.phoneNumber === "admin") {
-  } else {
-    document.getElementById("redirect").style.display = "none";
-  }
+  uniqueId = user.uid;
+  // if (user.phoneNumber === "admin") {
+  //   document.getElementById("redirect").textContent = "Go to Admin Panel";
+  // } else {
+  //   document.getElementById("redirect").style.display = "none";
+  // }
 })();
 
 //
+// console.log(uniqueId);
+//
 
+//
 var adminPanelRedirect = document.getElementById("redirect");
 
 adminPanelRedirect.addEventListener("click", () => {
-  window.location.pathname = "../";
+  window.location.pathname = "../admin-panel/admin.html";
 });
 
 //
@@ -60,6 +65,7 @@ let productsRow = document.getElementById("products-row");
 
 const dbRef = ref(db);
 const productsRef = child(dbRef, "products");
+const usersRef = child(dbRef, "users");
 
 onValue(productsRef, (snapshot) => {
   if (snapshot.exists()) {
@@ -89,3 +95,26 @@ onValue(productsRef, (snapshot) => {
     alert("no products available");
   }
 });
+
+// console.log(usersRef);
+
+get(child(dbRef, `users/${uniqueId}`))
+  .then((snapshot) => {
+    if (snapshot.exists()) {
+      handleRole(snapshot.val());
+      console.log(snapshot.val());
+    } else {
+      console.log("No data available");
+    }
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+function handleRole(userData) {
+  if (userData.role === "user") {
+    document.getElementById("redirect").style.display = "none";
+  } else {
+    document.getElementById("redirect").textContent = "Go to Admin Panel";
+  }
+}

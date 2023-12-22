@@ -10,7 +10,7 @@ let password = document.querySelector("#floatingPassword");
 (function () {
   let user = JSON.parse(localStorage.getItem("user"));
   if (user !== null) {
-    window.location.pathname = "../../products-read/index.html";
+    window.location.pathname = "../../index.html";
   }
 })();
 

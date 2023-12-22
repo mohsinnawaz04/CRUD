@@ -9,6 +9,7 @@ import {
 } from "../Firebase/firebaseConfig.js";
 
 var signUpForm = document.getElementById("signUpFormer");
+let name = document.querySelector("#floatingName");
 let email = document.querySelector("#floatingInput");
 let password = document.querySelector("#floatingPassword");
 let Confirmpassword = document.querySelector("#floatingPassword2");
@@ -36,19 +37,23 @@ function handleSubmit(e) {
       Confirmpassword.value = "";
       var userInfo = userCredential.user;
       var userCollection = {
+        name: name.value,
         email: userInfo.email,
         isVerified: userInfo.emailVerified,
         uniqueId: userInfo.uid,
         role: "user",
       };
+      const uniqueId = userInfo.uid;
+      // console.log(userCollection);
 
-      let userCollectionRef = ref(db, "users");
-      var usersUniqueRef = push(userCollectionRef);
+      // let userCollectionRef = ref(db, "users");
+      // var usersUniqueRef = push(userCollectionRef);
 
-      const uniqueKey = usersUniqueRef.key;
+      // const uniqueKey = usersUniqueRef.key;
 
-      set(ref(db, `users/${uniqueKey}`), userCollection)
+      set(ref(db, `users/${uniqueId}`), userCollection)
         .then(() => {
+          name.value = "";
           console.log("Successfully added usercollection");
         })
         .catch((err) => {
@@ -61,7 +66,6 @@ function handleSubmit(e) {
       console.error("ERROR: ", error);
     });
 }
-
 function sendVerificationToEmail(user) {
   sendEmailVerification(user).then(() => {
     // Email verification sent!

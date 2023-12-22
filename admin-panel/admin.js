@@ -26,19 +26,40 @@ import {
 
 (function () {
   let user = JSON.parse(localStorage.getItem("user"));
+  const uniqueId = user.uid;
   if (user === null) {
     window.location.pathname = "../Login-SignUp/Firebase - Login/login.html";
   }
-  if (user.phoneNumber !== "admin") {
-    window.location.pathname = "../user-interaction/products-page.html";
-  }
+
+  //
+  const dbRef = ref(db);
+  get(child(dbRef, `users/${uniqueId}`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        handleRole(snapshot.val());
+        // console.log(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+  //
 })();
+
+function handleRole(userData) {
+  if (userData.role === "user") {
+    window.location.pathname = "../index.html";
+  }
+}
 
 //
 let productsPageRedirect = document.getElementById("redirect");
 
 productsPageRedirect.addEventListener("click", () => {
-  window.location.pathname = "../user-interaction/products-page.html";
+  window.location.pathname = "../index.html";
 });
 
 //
