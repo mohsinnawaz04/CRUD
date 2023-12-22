@@ -1,0 +1,232 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+html, body {
+width: 100%;
+height: 100%;
+overflow-x: hidden;
+}
+
+.bg-img {
+    position: relative;
+}
+
+.bg-img::before{
+    position: absolute;
+    content: "";
+    background-image: url("https://images.unsplash.com/photo-1541462608143-67571c6738dd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80");
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    opacity: .1;
+}
+
+.container-md img {
+    width: 20%;
+}
+
+.social-icons img {
+    width: 28px;
+    margin-left: 10px;
+}
+
+.portal-btn {
+    border: 1px solid #0d6db7;
+    padding: .3rem 1.4rem;
+    color: #0E6DB7;
+    border-radius: 100px;
+    font-size: 14px;
+    letter-spacing: .3px;
+    background: transparent;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.header-text h1 {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+.sub-heading {
+    font-size: 14px;
+    margin-top: -15px;
+    font-weight: 600;
+    color: #757575;
+}
+
+.new-application-btn{
+    background: #fafafa;
+    border: 1px solid #e9e9e9;
+    border-bottom: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0E6DB7;
+    border-top: none;
+
+}
+.download-card-btn {
+    background: #fafafa;
+    border: 1px solid #e9e9e9;
+    border-bottom: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0E6DB7;
+    border-top: none;
+}
+.download-card-btn:hover,
+.new-application-btn:hover {
+    cursor: pointer;
+    
+}
+
+.selected {
+    color: #8dc63f;
+    background: transparent;
+}
+
+.ul {
+    padding-left: 0;
+}
+.ol {
+    padding: 0 10px;
+}
+.ol li {
+  font-size: 14px;
+  line-height: 1.5715;
+  font-weight: 600;
+}
+
+ul li {
+    list-style-type: none;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.hr {
+    opacity: .1;
+}
+
+.submit-btn {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    font-size: 14px!important;
+    outline: none;
+    background-color: #0E6DB7;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 600;
+    border: none;
+    height: 2.6rem;
+}
+
+.upload-btn {
+    padding: 2.2rem 1rem;
+    font-size: 13px;
+    background-color: #f2f2f2;
+    border: 1px dotted rgb(143, 143, 143);
+    border-radius: 0.375rem;
+}
+#image-display {
+    position: absolute;
+    left: 12px;
+    top: 0;
+    width: 86px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+    border-radius: 0.375rem;
+}
+#image-display img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+}
+
+
+
+/* .header-row {
+    display: flex;
+    flex-direction: column-reverse;
+} */
+
+
+#main label {
+    color: #0d6db7 ;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#main select {
+    border-color: #8dc63f;
+    height: 3.2rem;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#main select:hover {
+    cursor: pointer;
+}
+
+/* #main select::placeholder {
+    font-size: 14px;
+} */
+
+#main input {
+    border: 1px solid #8dc63f;
+    height: 3.2rem;
+    border-radius: 0.375rem;
+    font-size: 14px;
+}
+
+.hidden {
+    display: none;
+}
+
+#download-card label {
+    font-size: 13px;
+}
+
+#download-card input::placeholder{
+    font-size: 13px;
+    color: #bebebe;
+    font-weight: 600;
+}
+
+
+
+#submit-btn2 {
+    cursor: pointer;
+}
+.error {
+    background-color: #619FD0;
+    cursor: default !important;
+}
+
+#data-retrieved {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+/* Media Queries */
+
+@media (width <= 700px) {
+   .header-row {
+    flex-direction: column-reverse;
+   }
+
+    #data-retrieved {
+        justify-content: space-between;
+    }
+}
+
+@media (width <= 995px){
+    .saylani-logo{
+        width: 15rem !important;
+       }
+}

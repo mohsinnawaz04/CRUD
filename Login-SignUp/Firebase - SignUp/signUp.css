@@ -1,0 +1,6 @@
+.not-a-user{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    font-size: 16px;
+}
