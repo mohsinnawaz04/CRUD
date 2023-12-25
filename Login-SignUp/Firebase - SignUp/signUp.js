@@ -28,11 +28,19 @@ function handleSubmit(e) {
   e.preventDefault();
 
   if (email.value.trim() === "") {
-    alert("Please Enter Email");
+    Swal.fire({
+      icon: "error",
+      title: "WAIT!",
+      text: "Email cannot be empty",
+    });
     return;
   }
   if (password.value !== Confirmpassword.value) {
-    alert("Passwords do not match");
+    Swal.fire({
+      icon: "error",
+      title: "Pay ATTENTION!",
+      text: "Password fields do not match!",
+    });
     return;
   }
 
@@ -40,7 +48,7 @@ function handleSubmit(e) {
     .then((userCredential) => {
       Swal.fire({
         title: "Success",
-        text: `Your account has been created. Please check your email for verification email.`,
+        text: `Your account has been created. Please verify your email to login.`,
         icon: "success",
       });
       email.value = "";

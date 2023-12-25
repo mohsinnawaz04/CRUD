@@ -4,3 +4,7 @@
     gap: 1rem;
     margin-top: 5rem;
 }
+.navbar {
+    position: sticky !important;
+    top: 0;
+}
