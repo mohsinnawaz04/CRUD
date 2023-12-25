@@ -1,6 +1,13 @@
 import {
   auth,
   signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  googleProvider,
+  GithubAuthProvider,
+  githubProvider,
+  FacebookAuthProvider,
+  facebookProvider,
 } from "../Firebase/firebaseConfig.js";
 
 var loginForm = document.getElementById("loginForm");
@@ -43,6 +50,113 @@ function handleSubmit(e) {
       // ...
     })
     .catch((error) => {
+      Swal.fire({
+        title: "Error",
+        text:
+          "Your email or password was wrong. please re-enter your credentials",
+        icon: "error",
+      });
       console.error("ERROR: ", error);
+    });
+}
+
+// Google Login :-
+
+document
+  .getElementById("google-login")
+  .addEventListener("click", handleGoogleLogin);
+
+function handleGoogleLogin() {
+  console.log("clicked on google anchor");
+  signInWithPopup(auth, googleProvider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+
+      localStorage.setItem("user", JSON.stringify(user));
+      window.location.pathname = "../";
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+    })
+    .catch((error) => {
+      console.error("ERROR: ", error);
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
+}
+
+// Github Login :-
+
+document
+  .getElementById("github-login")
+  .addEventListener("click", handleGithubLogin);
+
+function handleGithubLogin() {
+  signInWithPopup(auth, githubProvider)
+    .then((result) => {
+      // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+      const credential = GithubAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+
+      // The signed-in user info.
+      const user = result.user;
+
+      localStorage.setItem("user", JSON.stringify(user));
+      window.location.pathname = "../";
+
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GithubAuthProvider.credentialFromError(error);
+      // ...
+    });
+}
+
+document
+  .getElementById("facebook-login")
+  .addEventListener("click", handleFacebookLogin);
+
+function handleFacebookLogin() {
+  signInWithPopup(auth, facebookProvider)
+    .then((result) => {
+      // The signed-in user info.
+      const user = result.user;
+
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      const credential = FacebookAuthProvider.credentialFromResult(result);
+      const accessToken = credential.accessToken;
+
+      localStorage.setItem("user", JSON.stringify(user));
+      window.location.pathname = "../";
+
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = FacebookAuthProvider.credentialFromError(error);
+
+      // ...
     });
 }

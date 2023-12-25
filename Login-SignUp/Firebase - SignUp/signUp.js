@@ -8,6 +8,13 @@ import {
   push,
 } from "../Firebase/firebaseConfig.js";
 
+(function () {
+  let user = JSON.parse(localStorage.getItem("user"));
+  if (user !== null) {
+    window.location.pathname = "../../index.html";
+  }
+})();
+
 var signUpForm = document.getElementById("signUpFormer");
 let name = document.querySelector("#floatingName");
 let email = document.querySelector("#floatingInput");
@@ -19,7 +26,6 @@ signUpForm.addEventListener("submit", handleSubmit);
 
 function handleSubmit(e) {
   e.preventDefault();
-  console.log("SignUp");
 
   if (email.value.trim() === "") {
     alert("Please Enter Email");
@@ -32,6 +38,11 @@ function handleSubmit(e) {
 
   createUserWithEmailAndPassword(auth, email.value, password.value)
     .then((userCredential) => {
+      Swal.fire({
+        title: "Success",
+        text: `Your account has been created. Please check your email for verification email.`,
+        icon: "success",
+      });
       email.value = "";
       password.value = "";
       Confirmpassword.value = "";

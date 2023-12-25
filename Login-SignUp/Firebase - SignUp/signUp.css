@@ -4,3 +4,34 @@
     gap: 5px;
     font-size: 16px;
 }
+
+.custom-hover{
+    text-decoration: none;
+    position: relative;
+}
+.custom-hover::after{
+    content: "";
+    position: absolute;
+    display: block;
+    left: 0px;
+    bottom: -2px;
+    width: 0px;
+    height: 1px;
+    background-color: #fff;
+}
+
+.custom-hover:hover::after{
+    width: 100%;
+    transition: all .3s;
+}
+
+.custom-hover:hover {
+    color: #fff !important;
+}
+
+
+
+.navbar {
+    position: sticky !important;
+    top: 0;
+}

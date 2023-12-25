@@ -13,47 +13,134 @@
     />
   </head>
   <body>
-    <div class="container text-center">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 m-auto mt-5">
-          <div class="auth-container">
-            <form id="loginForm">
-              <h1 class="title">
-                Login
-              </h1>
-              <div class="form-floating mb-3 mt-3">
-                <input
-                  type="email"
-                  class="form-control"
-                  id="floatingInput"
-                  placeholder="name@example.com"
-                />
-                <label for="floatingInput">Email address</label>
+    <nav class="navbar navbar-expand-lg bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">E-Comm</a>
+        <button
+          class="navbar-toggler bg-light"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="#"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--  -->
+    <section class="vh-100">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card text-white bg-dark" style="border-radius: 1rem;">
+              <div class="card-body p-5 text-center">
+                <div class="mb-md-5 mt-md-3 pb-5 auth-container">
+                  <form id="loginForm">
+                    <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                    <p class="text-white-50 mb-5">
+                      Please enter your login and password!
+                    </p>
+
+                    <div class="form-outline form-white mb-4 form-floating">
+                      <input
+                        type="email"
+                        id="floatingInput"
+                        class="form-control form-control-lg"
+                        placeholder="Enter your email"
+                      />
+                      <label
+                        class="form-label text-secondary"
+                        for="floatingInput"
+                        >Email</label
+                      >
+                    </div>
+
+                    <div class="form-outline form-white mb-4 form-floating">
+                      <input
+                        type="password"
+                        id="floatingPassword"
+                        class="form-control form-control-lg"
+                        placeholder="Enter your email"
+                      />
+                      <label
+                        class="form-label text-secondary"
+                        for="floatingPassword"
+                        >Password</label
+                      >
+                    </div>
+
+                    <p class="small mb-3 pb-lg-2">
+                      <a
+                        class="text-white-50 custom-hover"
+                        href="../Forgot Password/forgotPass.html"
+                        >Forgot password?</a
+                      >
+                    </p>
+
+                    <button
+                      class="btn btn-outline-light btn-lg px-5"
+                      type="submit"
+                    >
+                      Login
+                    </button>
+
+                    <div
+                      class="d-flex justify-content-center text-center mt-4 pt-1 third-party-login"
+                    >
+                      <a
+                        href="#"
+                        class="text-white facebook icon mx-3"
+                        id="facebook-login"
+                        ><i class="fab fa-facebook-f fa-lg"></i
+                      ></a>
+                      <a
+                        href="#"
+                        class="text-white github icon mx-3"
+                        id="github-login"
+                        ><i class="fab fa-github fa-lg mx-4 px-2"></i
+                      ></a>
+                      <a
+                        href="javascript:void(0)"
+                        class="text-white google icon mx-3"
+                        id="google-login"
+                        ><i class="fab fa-google fa-lg"></i
+                      ></a>
+                    </div>
+                  </form>
+                </div>
+
+                <div>
+                  <p class="mb-0">
+                    Don't have an account?
+                    <a
+                      href="..//Firebase - SignUp/signUp.html"
+                      class="text-white-50 fw-bold custom-hover"
+                      >Sign Up</a
+                    >
+                  </p>
+                </div>
               </div>
-              <div class="form-floating">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="floatingPassword"
-                  placeholder="Password"
-                />
-                <label for="floatingPassword">Password</label>
-                <button type="submit" class="btn btn-primary w-100 mt-3">
-                  Login
-                </button>
-              </div>
-            </form>
-          </div>
-          <div class="forgot-password mt-1">
-            <a href="../Forgot Password/forgotPass.html">Forgot Password</a>
-          </div>
-          <div class="not-a-user mt-3">
-            <p>Not a user?</p>
-            <a href="../Firebase - SignUp/signUp.html">Sign Up</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!--  -->
 
     <script type="module" src="./login.js"></script>
     <script
@@ -61,5 +148,10 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://kit.fontawesome.com/6e10d46125.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
