@@ -56,3 +56,8 @@
 .google:hover {
     color: #EA4335 !important;
 }
+
+.navbar {
+    position: sticky !important;
+    top: 0;
+}
