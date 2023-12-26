@@ -8,6 +8,12 @@ import {
   githubProvider,
   FacebookAuthProvider,
   facebookProvider,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  set,
+  db,
+  ref,
+  push,
 } from "../Firebase/firebaseConfig.js";
 
 var loginForm = document.getElementById("loginForm");
@@ -25,7 +31,7 @@ loginForm.addEventListener("submit", handleSubmit);
 
 function handleSubmit(e) {
   e.preventDefault();
-  console.log("login");
+  // console.log("login");
 
   if (email.value.trim() === "") {
     alert("Please Enter Email");
@@ -39,7 +45,7 @@ function handleSubmit(e) {
 
       let user = userCredential.user;
       user.phoneNumber = "user";
-      console.log(user);
+      // console.log(user);
       if (user.emailVerified === false) {
         alert("Email not verified");
         return;
@@ -67,16 +73,35 @@ document
   .addEventListener("click", handleGoogleLogin);
 
 function handleGoogleLogin() {
-  console.log("clicked on google anchor");
+  // console.log("clicked on google anchor");
   signInWithPopup(auth, googleProvider)
     .then((result) => {
+      var userInfo = result.user;
+      // console.log(userInfo);
+      var userCollection = {
+        name: userInfo.displayName,
+        email: userInfo.email,
+        isVerified: userInfo.emailVerified,
+        uniqueId: userInfo.uid,
+        role: "user",
+      };
+      const uniqueId = userInfo.uid;
+
+      set(ref(db, `users/${uniqueId}`), userCollection)
+        .then(() => {
+          console.log("Successfully added usercollection");
+        })
+        .catch((err) => {
+          console.log("ERROR: ", err);
+        });
+      // console.log(userCollection);
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       // The signed-in user info.
-      const user = result.user;
+      // const user = result.user;
 
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(userInfo));
       window.location.pathname = "../";
       // IdP data available using getAdditionalUserInfo(result)
       // ...
@@ -103,15 +128,34 @@ document
 function handleGithubLogin() {
   signInWithPopup(auth, githubProvider)
     .then((result) => {
-      // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-      const credential = GithubAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-
       // The signed-in user info.
       const user = result.user;
+      var userInfo = result.user;
+      // console.log(userInfo);
+      var userCollection = {
+        name: userInfo.displayName,
+        email: userInfo.email,
+        isVerified: userInfo.emailVerified,
+        uniqueId: userInfo.uid,
+        role: "user",
+      };
+      const uniqueId = userInfo.uid;
+
+      set(ref(db, `users/${uniqueId}`), userCollection)
+        .then(() => {
+          console.log("Successfully added usercollection");
+        })
+        .catch((err) => {
+          console.log("ERROR: ", err);
+        });
+      // console.log(userCollection);
 
       localStorage.setItem("user", JSON.stringify(user));
       window.location.pathname = "../";
+
+      // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+      const credential = GithubAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
 
       // IdP data available using getAdditionalUserInfo(result)
       // ...
@@ -137,6 +181,25 @@ function handleFacebookLogin() {
     .then((result) => {
       // The signed-in user info.
       const user = result.user;
+      var userInfo = result.user;
+      // console.log(userInfo);
+      var userCollection = {
+        name: userInfo.displayName,
+        email: userInfo.email,
+        isVerified: userInfo.emailVerified,
+        uniqueId: userInfo.uid,
+        role: "user",
+      };
+      const uniqueId = userInfo.uid;
+
+      set(ref(db, `users/${uniqueId}`), userCollection)
+        .then(() => {
+          console.log("Successfully added usercollection");
+        })
+        .catch((err) => {
+          console.log("ERROR: ", err);
+        });
+      // console.log(userCollection);
 
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       const credential = FacebookAuthProvider.credentialFromResult(result);

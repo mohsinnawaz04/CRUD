@@ -135,7 +135,7 @@ signOutDiv.addEventListener("click", userSignOut);
 //
 
 function userSignOut() {
-  console.log(auth);
+  // console.log(auth);
   signOut(auth)
     .then(() => {
       localStorage.removeItem("user");

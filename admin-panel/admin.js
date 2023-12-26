@@ -113,6 +113,11 @@ function handleSubmit(e) {
         set(ref(db, `products/${uniqueKey}`), data)
           .then(() => {
             console.log("Success");
+            Swal.fire({
+              title: "Success",
+              text: `Your product has been added to database.`,
+              icon: "success",
+            });
             document
               .querySelectorAll("input")
               .forEach((inp) => (inp.value = ""));

@@ -63,12 +63,6 @@ function handleSubmit(e) {
         role: "user",
       };
       const uniqueId = userInfo.uid;
-      // console.log(userCollection);
-
-      // let userCollectionRef = ref(db, "users");
-      // var usersUniqueRef = push(userCollectionRef);
-
-      // const uniqueKey = usersUniqueRef.key;
 
       set(ref(db, `users/${uniqueId}`), userCollection)
         .then(() => {
@@ -78,7 +72,7 @@ function handleSubmit(e) {
         .catch((err) => {
           console.log("ERROR: ", err);
         });
-      console.log(userCollection);
+      // console.log(userCollection);
       sendVerificationToEmail(userCredential.user);
     })
     .catch((error) => {
